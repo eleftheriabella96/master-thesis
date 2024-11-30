@@ -429,7 +429,7 @@ AVG_BUBBLE=0
 #number = sys.argv[1]
 window_size = int(sys.argv[1])
 window = [0]*window_size
-library_name = 'cu-supraventricular-arrhythmia'
+library_name = 'cu-ventricular-tachyarrhythmia'
 countlines = 0
 tags = []
 
@@ -498,7 +498,6 @@ for filename_record in tags:
 		bubble = bubble_entropy_fast(window,m=15)		#bubble entropy
 		bubble_array.append(bubble)
 		
-		
 	AVG_HR = round(sum(AVG_array)/ len(AVG_array), 2)
 	AVG_RMSSD = round(sum(RMSSD_array)/ len(RMSSD_array), 2)
 	AVG_SHANNON = round(sum(Shannon_array)/ len(Shannon_array), 2)
@@ -508,7 +507,6 @@ for filename_record in tags:
 	AVG_HAAR4 = round(sum(haar_4_flat)/ len(haar_4_flat), 2)
 	AVG_HAAR6 = round(sum(haar_6_flat)/ len(haar_6_flat), 2)
 	AVG_HAAR8 = round(sum(haar_8_flat)/ len(haar_8_flat), 2)
-	
 
 
 	#HEART RATE PLOT
@@ -562,13 +560,14 @@ for filename_record in tags:
 	plt.plot(x3_, y3_, color = 'red', linewidth = 0.5, zorder = 2)
 	
 	plt.plot(haar_4_flat, color = 'green', linewidth = 0.5, zorder = 2, label = 'Haar scale=4')
-	plt.plot(haar_6_flat, color = 'black', linewidth = 0.5, zorder = 2, label = 'Haar scale=6')
-	plt.plot(haar_8_flat, color = 'orange', linewidth = 0.5, zorder = 2, label = 'Haar scale=8')
-	
+	plt.plot(haar_6_flat, color = 'black', linewidth = 0.5, zorder = 2, label = 'Haar scale=4')
+	plt.plot(haar_8_flat, color = 'orange', linewidth = 0.5, zorder = 2, label = 'Haar scale=4')
+		
 	plt.legend(loc = 'upper right')
 	figurename =  library_name + "_" + str(filename_record) + "_" + str(window_size) + "sec.jpeg" 
 	
 	plt.savefig(figurename)
+	 
 	
 
 
@@ -586,12 +585,11 @@ for filename_record in tags:
 	f_latex_data.write("\\newcommand{\\meanSampEn}{"+str(AVG_SAMPEN)+"}" + "\n")
 	f_latex_data.write("\\newcommand{\\meanBubble}{"+str(AVG_BUBBLE)+"}" + "\n")
 	f_latex_data.write("\\newcommand{\\meanHaar4}{"+str(AVG_HAAR4)+"}" + "\n")
-	f_latex_data.write("\\newcommand{\\meanHaar4}{"+str(AVG_HAAR6)+"}" + "\n")
-	f_latex_data.write("\\newcommand{\\meanHaar4}{"+str(AVG_HAAR8)+"}" + "\n")
-	
+	f_latex_data.write("\\newcommand{\\meanHaar6}{"+str(AVG_HAAR6)+"}" + "\n")
+	f_latex_data.write("\\newcommand{\\meanHaar8}{"+str(AVG_HAAR8)+"}" + "\n")
 
 	f_latex_data.write("\\newcommand{\\figurename}{"+figurename+"}" + "\n")
-	f_latex_data.write("\\newcommand{\\file}{latex_data_"+ str(filename_record)+"}" + "\n")
+	#f_latex_data.write("\\newcommand{\\file}{latex_data_"+ str(filename_record)+"}" + "\n")
 
 	f_latex_data.close()
 	file_RR.close()

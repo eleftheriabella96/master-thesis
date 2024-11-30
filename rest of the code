@@ -1,0 +1,553 @@
+################## 2) ZERO RR INTERVALS #############################
+
+window = [0]*window_size
+
+#heartrate = hr['heartrate'].values.tolist()
+heartrate_sec = heartrate
+
+
+'''for i in range(len(heartrate)):	    #convert bpm to msec
+	if heartrate[i] != 0:
+		heartrate[i] = int(60000/heartrate[i])  # 60,000/bpm = msec
+	else:
+		heartrate[i] = 0
+'''
+amount_of_windows = int(len(heartrate_sec)/window_size)
+RMSSD_array = []
+AVG_array = []
+SDNN_array = []
+SDNNi_array = []
+pnn50_array = []
+Shannon_array = []
+approximate_array = []
+sample_array = []
+bubble_array = []
+
+
+#first 1/3 of the windows: 20 random values become 0 (up to)
+for i in range(0, int(amount_of_windows/3)):
+	zeros = heartrate[i*window_size:(i+1)*window_size]
+	for i in range(0, 20):
+		r = random.randrange(0, 60)
+		zeros[r] = 0
+	heartrate[i*window_size:i*window_size+60] = zeros
+
+for i in range(0, amount_of_windows):
+	window = heartrate[window_size*i:window_size*(i+1)]	
+	window_sec = heartrate_sec[window_size*i:window_size*(i+1)]	
+	RMSSD = np.sqrt(np.mean(np.square(np.diff(window))))  #RMSSD 
+	RMSSD_array.append(RMSSD)
+	AVG = average(window)																	#AVG of window
+	AVG_array.append(AVG) 
+	SDNN = td.sdnn(window)																#SDNN 
+	SDNN_array.append(SDNN[0])															
+	#SDNNi = td.sdnn_index(window)					#SDNNi
+	#SDNNi_array.append(SDNNi['sdnn_index'])		
+	pnn50 = td.nn50(window)
+	pnn50_array.append(pnn50[0])			#pnn50											
+	Shannon = shannon(window)															#Shannon entropy
+	Shannon_array.append(Shannon)
+	approximate = approximate_entropy_bucket(window,m=2,r=0.2,rsplit=5)#approximate entropy
+	approximate_array.append(approximate)
+	sample = sample_entropy_bucket(window,m=2,r=0.2,rsplit=5)#sample entropy
+	sample_array.append(sample)
+	bubble = bubble_entropy_fast(window,m=10)							#bubble entropy
+	bubble_array.append(bubble)
+
+max_AVG.append(max(AVG_array))
+max_RMSSD.append(max(RMSSD_array))
+max_SDNN.append(max(SDNN_array))
+#max_SDNNi.append(max(SDNNi_array))
+max_PNN50.append(max(pnn50_array))
+max_SHANNON.append(max(Shannon_array))
+max_APEN.append(max(approximate_array))
+max_SAMPEN.append(max(sample_array))
+max_BUBBLE.append(max(bubble_array))
+
+#HEART RATE PLOT
+plt.figure(1)
+x = [i for i in range(1, len(heartrate)+1)]
+y = heartrate
+
+#window with highest RMSSD value
+RMSSD_index = RMSSD_array.index(max(RMSSD_array))#index window of max RMSSD value
+x1 = [i for i in range(RMSSD_index*window_size,(RMSSD_index+1)*window_size)]
+y1 = heartrate[RMSSD_index*window_size:(RMSSD_index+1)*window_size]#window of max RMSSD value
+
+#window with highest ApEn value
+APEN_index = approximate_array.index(max(approximate_array))#index window of max ApEn value
+x2 = [i for i in range(APEN_index*window_size,(APEN_index+1)*window_size)]
+y2 = heartrate[APEN_index*window_size:(APEN_index+1)*window_size]#window of max ApEn value
+
+
+plt.title("HR PLOT")
+plt.xlabel("Sample number")
+plt.ylabel("RR intervals [ms]")
+plt.plot(x, y, color = 'blue', linewidth = 0.5, zorder = 1)
+plt.plot(x1, y1, color = 'red', linewidth = 0.5, zorder = 2)
+plt.plot(x2, y2, color = 'red', linewidth = 0.5, zorder = 3)
+figurename1 =  library_name +"1.jpeg" #"Usr" + str(user)+"0.jpeg"
+plt.savefig(figurename1)
+#plt.show()
+
+################## 3) HIGHER RR INTERVALS #############################
+window = [0]*window_size
+
+#heartrate = hr['heartrate'].values.tolist()
+heartrate_sec = heartrate_copy
+
+'''for i in range(len(heartrate)):	    #convert bpm to msec
+	if heartrate[i] != 0:
+		heartrate[i] = int(60000/heartrate[i])  # 60,000/bpm = msec
+	else:
+		heartrate[i] = 0
+'''
+amount_of_windows = int(len(heartrate)/window_size)
+RMSSD_array = []
+STD_array = []
+AVG_array = []
+SDNN_array = []
+SDNNi_array = []
+pnn50_array = []
+Shannon_array = []
+approximate_array = []
+sample_array = []
+bubble_array = []
+	
+for i in range(0, int(amount_of_windows/2)):
+	zeros = []
+	zeros = heartrate[i*window_size:(i+1)*window_size]
+	zeros =  [element * 2 for element in zeros]
+	heartrate_sec[i*window_size:(i+1)*window_size] = zeros
+	
+for i in range(0, amount_of_windows):
+	window = heartrate[window_size*i:window_size*(i+1)]	
+	RMSSD = np.sqrt(np.mean(np.square(np.diff(window))))  #RMSSD 
+	RMSSD_array.append(RMSSD)
+	AVG = average(window)																	#AVG of window
+	AVG_array.append(AVG) 
+	SDNN = td.sdnn(window)																#SDNN 
+	SDNN_array.append(SDNN[0])															
+	#SDNNi = td.sdnn_index(window)					#SDNNi
+	#SDNNi_array.append(SDNNi['sdnn_index'])
+	pnn50 = td.nn50(window)
+	pnn50_array.append(pnn50[0])			#pnn50												
+	Shannon = shannon(window)															#Shannon entropy
+	Shannon_array.append(Shannon)
+	approximate = approximate_entropy_bucket(window,m=2,r=0.2,rsplit=5)#approximate entropy
+	approximate_array.append(approximate)
+	sample = sample_entropy_bucket(window,m=2,r=0.2,rsplit=5)#sample entropy
+	sample_array.append(sample)
+	bubble = bubble_entropy_fast(window,m=10)							#bubble entropy
+	bubble_array.append(bubble)
+		
+max_AVG.append(max(AVG_array))
+max_RMSSD.append(max(RMSSD_array))
+max_SDNN.append(max(SDNN_array))
+#max_SDNNi.append(max(SDNNi_array))
+max_PNN50.append(max(pnn50_array))
+max_SHANNON.append(max(Shannon_array))
+max_APEN.append(max(approximate_array))
+max_SAMPEN.append(max(sample_array))
+max_BUBBLE.append(max(bubble_array))
+
+
+#HEART RATE PLOT
+plt.figure(2)
+x = [i for i in range(1, len(heartrate)+1)]
+y = heartrate
+
+#window with highest RMSSD value
+RMSSD_index = RMSSD_array.index(max(RMSSD_array))#index window of max RMSSD value
+x1 = [i for i in range(RMSSD_index*window_size,(RMSSD_index+1)*window_size)]
+y1 = heartrate[RMSSD_index*window_size:(RMSSD_index+1)*window_size]#window of max RMSSD value
+
+#window with highest ApEn value
+APEN_index = approximate_array.index(max(approximate_array))#index window of max ApEn value
+x2 = [i for i in range(APEN_index*window_size,(APEN_index+1)*window_size)]
+y2 = heartrate[APEN_index*window_size:(APEN_index+1)*window_size]#window of max ApEn value
+
+
+plt.title("HR PLOT")
+plt.xlabel("Sample number")
+plt.ylabel("RR intervals [ms]")
+plt.plot(x, y, color = 'blue', linewidth = 0.5, zorder = 1)
+plt.plot(x1, y1, color = 'red', linewidth = 0.5, zorder = 2)
+plt.plot(x2, y2, color = 'red', linewidth = 0.5, zorder = 3)
+figurename2 = library_name +"2.jpeg" #"Usr" + str(user)+"1.jpeg"
+plt.savefig(figurename2)
+#plt.show()
+	
+	
+################## 4) A_B+C #############################
+heartrate = heartrate_copy #hr['heartrate'].values.tolist()
+
+'''for i in range(len(heartrate)):	    #convert bpm to msec
+	if heartrate[i] != 0:
+		heartrate[i] = int(60000/heartrate[i])  # 60,000/bpm = msec
+	else:
+		heartrate[i] = 0
+'''
+amount_of_windows = int(len(heartrate)/window_size)
+RMSSD_array = []
+STD_array = []
+AVG_array = []
+SDNN_array = []
+SDNNi_array = []
+pnn50_array = []
+Shannon_array = []
+approximate_array = []
+sample_array = []
+bubble_array = []
+
+for i in range(0, 5*60, 20):	#one every 20 seconds for the first 5 finutes
+	heartrate[i] += heartrate[i+1]
+	heartrate = [heartrate[i] for i in range(len(heartrate)) if i != i+1]
+		
+for i in range(0, amount_of_windows):
+	window = heartrate[window_size*i:window_size*(i+1)]	
+	RMSSD = np.sqrt(np.mean(np.square(np.diff(window))))  #RMSSD 
+	RMSSD_array.append(RMSSD)
+	AVG = average(window)																	#AVG of window
+	AVG_array.append(AVG) 
+	SDNN = td.sdnn(window)																#SDNN 
+	SDNN_array.append(SDNN[0])															
+	#SDNNi = td.sdnn_index(window)					#SDNNi
+	#SDNNi_array.append(SDNNi['sdnn_index'])									
+	pnn50 = td.nn50(window)
+	pnn50_array.append(pnn50[0])													#pnn50			
+	Shannon = shannon(window)															#Shannon entropy
+	Shannon_array.append(Shannon)
+	approximate = approximate_entropy_bucket(window,m=2,r=0.2,rsplit=5)#approximate entropy
+	approximate_array.append(approximate)
+	sample = sample_entropy_bucket(window,m=2,r=0.2,rsplit=5)#sample entropy
+	sample_array.append(sample)
+	bubble = bubble_entropy_fast(window,m=10)							#bubble entropy
+	bubble_array.append(bubble)
+
+max_AVG.append(max(AVG_array))		
+max_RMSSD.append(max(RMSSD_array))
+max_SDNN.append(max(SDNN_array))
+#max_SDNNi.append(max(SDNNi_array))
+max_PNN50.append(max(pnn50_array))
+max_SHANNON.append(max(Shannon_array))
+max_APEN.append(max(approximate_array))
+max_SAMPEN.append(max(sample_array))
+max_BUBBLE.append(max(bubble_array))
+
+
+#HEART RATE PLOT
+plt.figure(3)
+x = [i for i in range(1, len(heartrate)+1)]
+y = heartrate
+
+#window with highest RMSSD value
+RMSSD_index = RMSSD_array.index(max(RMSSD_array))#index window of max RMSSD value
+x1 = [i for i in range(RMSSD_index*window_size,(RMSSD_index+1)*window_size)]
+y1 = heartrate[RMSSD_index*window_size:(RMSSD_index+1)*window_size]#window of max RMSSD value
+
+#window with highest ApEn value
+APEN_index = approximate_array.index(max(approximate_array))#index window of max ApEn value
+x2 = [i for i in range(APEN_index*window_size,(APEN_index+1)*window_size)]
+y2 = heartrate[APEN_index*window_size:(APEN_index+1)*window_size]#window of max ApEn value
+
+
+plt.title("HR PLOT")
+plt.xlabel("Sample number")
+plt.ylabel("RR intervals [ms]")
+plt.plot(x, y, color = 'blue', linewidth = 0.5, zorder = 1)
+plt.plot(x1, y1, color = 'red', linewidth = 0.5, zorder = 2)
+plt.plot(x2, y2, color = 'red', linewidth = 0.5, zorder = 3)
+figurename3 = library_name + "3.jpeg"#"Usr" + str(user)+"2.jpeg"
+plt.savefig(figurename3)
+#plt.show()
+
+################## 5) A_x_B_C #############################
+heartrate = heartrate_copy#hr['heartrate'].values.tolist()
+
+'''for i in range(len(heartrate)):	    #convert bpm to msec
+	if heartrate[i] != 0:
+		heartrate[i] = int(60000/heartrate[i])  # 60,000/bpm = msec
+	else:
+		heartrate[i] = 0
+'''
+amount_of_windows = int(len(heartrate)/window_size)
+RMSSD_array = []
+STD_array = []
+AVG_array = []
+SDNN_array = []
+SDNNi_array = []
+pnn50_array = []
+Shannon_array = []
+approximate_array = []
+sample_array = []
+bubble_array = []
+	
+#print(len(heartrate))
+for i in range(0, 5*60, 5):#one every five seconds for the first 5 finutes
+	heartrate.insert(i, randrange(5)*0.1)
+#print(len(heartrate))
+
+for i in range(0, amount_of_windows):
+	window = heartrate[window_size*i:window_size*(i+1)]	
+	RMSSD = np.sqrt(np.mean(np.square(np.diff(window))))  #RMSSD 
+	RMSSD_array.append(RMSSD)
+	AVG = average(window)																	#AVG of window
+	AVG_array.append(AVG) 
+	SDNN = td.sdnn(window)																#SDNN 
+	SDNN_array.append(SDNN[0])														
+	pnn50 = td.nn50(window)
+	pnn50_array.append(pnn50[0])			#pnn50													
+	#SDNNi = td.sdnn_index(window)					#SDNNi
+	#SDNNi_array.append(SDNNi['sdnn_index'])													
+	Shannon = shannon(window)															#Shannon entropy
+	Shannon_array.append(Shannon)
+	approximate = approximate_entropy_bucket(window,m=2,r=0.2,rsplit=5)#approximate entropy
+	approximate_array.append(approximate)
+	sample = sample_entropy_bucket(window,m=2,r=0.2,rsplit=5)#sample entropy
+	sample_array.append(sample)
+	bubble = bubble_entropy_fast(window,m=10)							#bubble entropy
+	bubble_array.append(bubble)
+		
+max_AVG.append(max(AVG_array))
+max_RMSSD.append(max(RMSSD_array))
+max_SDNN.append(max(SDNN_array))
+#max_SDNNi.append(max(SDNNi_array))
+max_PNN50.append(max(pnn50_array))
+max_SHANNON.append(max(Shannon_array))
+max_APEN.append(max(approximate_array))
+max_SAMPEN.append(max(sample_array))
+max_BUBBLE.append(max(bubble_array))
+
+#HEART RATE PLOT
+plt.figure(4)
+x = [i for i in range(1, len(heartrate)+1)]
+y = heartrate
+
+#window with highest RMSSD value
+RMSSD_index = RMSSD_array.index(max(RMSSD_array))#index window of max RMSSD value
+x1 = [i for i in range(RMSSD_index*window_size,(RMSSD_index+1)*window_size)]
+y1 = heartrate[RMSSD_index*window_size:(RMSSD_index+1)*window_size]#window of max RMSSD value
+
+#window with highest ApEn value
+APEN_index = approximate_array.index(max(approximate_array))#index window of max ApEn value
+x2 = [i for i in range(APEN_index*window_size,(APEN_index+1)*window_size)]
+y2 = heartrate[APEN_index*window_size:(APEN_index+1)*window_size]#window of max ApEn value
+
+
+plt.title("HR PLOT")
+plt.xlabel("Sample number")
+plt.ylabel("RR intervals [ms]")
+plt.plot(x, y, color = 'blue', linewidth = 0.5, zorder = 1)
+plt.plot(x1, y1, color = 'red', linewidth = 0.5, zorder = 2)
+plt.plot(x2, y2, color = 'red', linewidth = 0.5, zorder = 3)
+figurename4 = library_name + "4.jpeg" #"Usr" + str(user)+"3.jpeg"
+plt.savefig(figurename4)
+#plt.show()
+
+################## 6) A_x_B-x_C #############################
+heartrate = heartrate_copy #hr['heartrate'].values.tolist()
+
+'''for i in range(len(heartrate)):	    #convert bpm to msec
+	if heartrate[i] != 0:
+		heartrate[i] = int(60000/heartrate[i])  # 60,000/bpm = msec
+	else:
+		heartrate[i] = 0
+'''
+amount_of_windows = int(len(heartrate)/window_size)
+RMSSD_array = []
+STD_array = []
+AVG_array = []
+SDNN_array = []
+SDNNi_array = []
+pnn50_array = []
+Shannon_array = []
+approximate_array = []
+sample_array = []
+bubble_array = []
+
+#print(len(heartrate))
+for i in range(0, 5*60, 5):#one every five seconds for the first 5 finutes
+	x = randrange(5)*0.1
+	heartrate.insert(i, x)
+	heartrate[i+1] -= x
+#print(len(heartrate))
+
+for i in range(0, amount_of_windows):
+	window = heartrate[window_size*i:window_size*(i+1)]	
+	RMSSD = np.sqrt(np.mean(np.square(np.diff(window))))  #RMSSD 
+	RMSSD_array.append(RMSSD)
+	AVG = average(window)																	#AVG of window
+	AVG_array.append(AVG) 
+	SDNN = td.sdnn(window)																#SDNN 
+	SDNN_array.append(SDNN[0])														
+	#SDNNi = td.sdnn_index(window)					#SDNNi
+	#SDNNi_array.append(SDNNi['sdnn_index'])
+	pnn50 = td.nn50(window)
+	pnn50_array.append(pnn50[0])			#pnn50													
+	Shannon = shannon(window)															#Shannon entropy
+	Shannon_array.append(Shannon)
+	approximate = approximate_entropy_bucket(window,m=2,r=0.2,rsplit=5)#approximate entropy
+	approximate_array.append(approximate)
+	sample = sample_entropy_bucket(window,m=2,r=0.2,rsplit=5)#sample entropy
+	sample_array.append(sample)
+	bubble = bubble_entropy_fast(window,m=10)							#bubble entropy
+	bubble_array.append(bubble)
+		
+max_AVG.append(max(AVG_array))
+max_RMSSD.append(max(RMSSD_array))
+max_SDNN.append(max(SDNN_array))
+#max_SDNNi.append(max(SDNNi_array))
+max_PNN50.append(max(pnn50_array))
+max_SHANNON.append(max(Shannon_array))
+max_APEN.append(max(approximate_array))
+max_SAMPEN.append(max(sample_array))
+max_BUBBLE.append(max(bubble_array))
+
+#HEART RATE PLOT
+plt.figure(5)
+x = [i for i in range(1, len(heartrate)+1)]
+y = heartrate
+
+#window with highest RMSSD value
+RMSSD_index = RMSSD_array.index(max(RMSSD_array))#index window of max RMSSD value
+x1 = [i for i in range(RMSSD_index*window_size,(RMSSD_index+1)*window_size)]
+y1 = heartrate[RMSSD_index*window_size:(RMSSD_index+1)*window_size]#window of max RMSSD value
+
+#window with highest ApEn value
+APEN_index = approximate_array.index(max(approximate_array))#index window of max ApEn value
+x2 = [i for i in range(APEN_index*window_size,(APEN_index+1)*window_size)]
+y2 = heartrate[APEN_index*window_size:(APEN_index+1)*window_size]#window of max ApEn value
+
+
+plt.title("HR PLOT")
+plt.xlabel("Sample number")
+plt.ylabel("RR intervals [ms]")
+plt.plot(x, y, color = 'blue', linewidth = 0.5, zorder = 1)
+plt.plot(x1, y1, color = 'red', linewidth = 0.5, zorder = 2)
+plt.plot(x2, y2, color = 'red', linewidth = 0.5, zorder = 3)
+figurename5 = library_name + "5.jpeg"  #"Usr" + str(user)+"4.jpeg"
+plt.savefig(figurename5)
+#plt.show()
+
+
+################## 7) A_x_C #############################
+heartrate = heartrate_copy #hr['heartrate'].values.tolist()
+
+'''for i in range(len(heartrate)):	    #convert bpm to msec
+	if heartrate[i] != 0:
+		heartrate[i] = int(60000/heartrate[i])  # 60,000/bpm = msec
+	else:
+		heartrate[i] = 0
+'''
+amount_of_windows = int(len(heartrate)/window_size)
+RMSSD_array = []
+STD_array = []
+AVG_array = []
+SDNN_array = []
+SDNNi_array = []
+pnn50_array = []
+Shannon_array = []
+approximate_array = []
+sample_array = []
+bubble_array = []
+	
+for i in range(0, 5*60, 10):#one every 10 seconds for the first five finutes
+	heartrate[i] /= 10
+		
+for i in range(0, amount_of_windows):
+	window = heartrate[window_size*i:window_size*(i+1)]	
+	RMSSD = np.sqrt(np.mean(np.square(np.diff(window))))  #RMSSD 
+	RMSSD_array.append(RMSSD)
+	AVG = average(window)																	#AVG of window
+	AVG_array.append(AVG) 
+	SDNN = td.sdnn(window)																#SDNN 
+	SDNN_array.append(SDNN[0])															
+	#SDNNi = td.sdnn_index(window)					#SDNNi
+	#SDNNi_array.append(SDNNi['sdnn_index'])
+	pnn50 = td.nn50(window)
+	pnn50_array.append(pnn50[0])			#pnn50													
+	Shannon = shannon(window)															#Shannon entropy
+	Shannon_array.append(Shannon)
+	approximate = approximate_entropy_bucket(window,m=2,r=0.2,rsplit=5)#approximate entropy
+	approximate_array.append(approximate)
+	sample = sample_entropy_bucket(window,m=2,r=0.2,rsplit=5)#sample entropy
+	sample_array.append(sample)
+	bubble = bubble_entropy_fast(window,m=10)							#bubble entropy
+	bubble_array.append(bubble)
+
+
+max_AVG.append(max(AVG_array))
+max_RMSSD.append(max(RMSSD_array))
+max_SDNN.append(max(SDNN_array))
+#max_SDNNi.append(max(SDNNi_array))
+max_PNN50.append(max(pnn50_array))
+max_SHANNON.append(max(Shannon_array))
+max_APEN.append(max(approximate_array))
+max_SAMPEN.append(max(sample_array))
+max_BUBBLE.append(max(bubble_array))
+
+#HEART RATE PLOT
+plt.figure(6)
+x = [i for i in range(1, len(heartrate)+1)]
+y = heartrate
+
+#window with highest RMSSD value
+RMSSD_index = RMSSD_array.index(max(RMSSD_array))#index window of max RMSSD value
+x1 = [i for i in range(RMSSD_index*window_size,(RMSSD_index+1)*window_size)]
+y1 = heartrate[RMSSD_index*window_size:(RMSSD_index+1)*window_size]#window of max RMSSD value
+
+#window with highest ApEn value
+APEN_index = approximate_array.index(max(approximate_array))#index window of max ApEn value
+x2 = [i for i in range(APEN_index*window_size,(APEN_index+1)*window_size)]
+y2 = heartrate[APEN_index*window_size:(APEN_index+1)*window_size]#window of max ApEn value
+
+
+plt.title("HR PLOT")
+plt.xlabel("Sample number")
+plt.ylabel("RR intervals [ms]")
+plt.plot(x, y, color = 'blue', linewidth = 0.5, zorder = 1)
+plt.plot(x1, y1, color = 'red', linewidth = 0.5, zorder = 2)
+plt.plot(x2, y2, color = 'red', linewidth = 0.5, zorder = 3)
+figurename6 = library_name + "6.jpeg" #"Usr" + str(user)+"5.jpeg"
+plt.savefig(figurename6)
+#plt.show()
+
+FIND MAX VALUE (AND ITS INDEX) FOR EACH METRIC
+max_AVG_VALUE = round(max(max_AVG), 2)
+max_AVG_VALUE_INDEX = max_AVG.index(max(max_AVG))
+
+max_RMSSD_VALUE = round(max(max_RMSSD), 2)
+max_RMSSD_VALUE_INDEX = max_RMSSD.index(max(max_RMSSD))
+
+max_SDNN_VALUE = round(max(max_SDNN), 2)
+max_SDNN_VALUE_INDEX = max_SDNN.index(max(max_SDNN))
+
+#max_SDNNi_VALUE = round(max(max_SDNNi), 2)
+#max_SDNNi_VALUE_INDEX = max_SDNNi.index(max(max_SDNNi))
+
+max_PNN50_VALUE = round(max(max_PNN50), 2)
+max_PNN50_VALUE_INDEX = max_PNN50.index(max(max_PNN50))
+
+max_SHANNON_VALUE = round(max(max_SHANNON), 2)
+max_SHANNON_VALUE_INDEX = max_SHANNON.index(max(max_SHANNON))
+
+max_APEN_VALUE = round(max(max_APEN), 2)
+max_APEN_VALUE_INDEX = max_APEN.index(max(max_APEN))
+
+max_SAMPEN_VALUE = round(max(max_SAMPEN), 2)
+max_SAMPEN_VALUE_INDEX = max_SAMPEN.index(max(max_SAMPEN))
+
+max_BUBBLE_VALUE = round(max(max_BUBBLE), 2)
+max_BUBBLE_VALUE_INDEX = max_BUBBLE.index(max(max_BUBBLE))
+
+
+f.write("\\newcommand{\\mean}{"+str(max_AVG_VALUE)+"}" + "\n")
+f.write("\\newcommand{\\rmssd}{"+str(max_RMSSD_VALUE)+"}" + "\n")
+f.write("\\newcommand{\\sdnn}{"+str(max_SDNN_VALUE)+"}" + "\n")
+#f.write("\\newcommand{\\SDNNi}{"+str(max_SDNNi_VALUE)+"}" + "\n")
+f.write("\\newcommand{\\pnn}{"+str(max_PNN50_VALUE)+"}" + "\n")
+f.write("\\newcommand{\\Shannon}{"+str(max_SHANNON_VALUE)+"}" + "\n")
+f.write("\\newcommand{\\ApEn}{"+str(max_APEN_VALUE)+"}" + "\n")
+f.write("\\newcommand{\\SampEn}{"+str(max_SAMPEN_VALUE)+"}" + "\n")
+f.write("\\newcommand{\\Bubble}{"+str(max_BUBBLE_VALUE)+"}" + "\n")
