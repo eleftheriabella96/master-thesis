@@ -406,6 +406,7 @@ max_AVG=[]
 max_RMSSD=[]
 max_SDNN=[]
 max_SDNNi=[]
+max_PNN50=[]
 max_SHANNON=[]
 max_APEN=[]
 max_SAMPEN=[]
@@ -415,6 +416,7 @@ max_AVG_VALUE=0
 max_RMSSD_VALUE=0
 max_SDNN_VALUE=0
 max_SDNNi_VALUE=0
+max_PNN50_VALUE=0
 max_SHANNON_VALUE=0
 max_APEN_VALUE=0
 max_SAMPEN_VALUE=0
@@ -424,6 +426,7 @@ AVG_HR=0
 AVG_RMSSD=0
 AVG_SDNN=0
 AVG_SDNNi=0
+AVG_PNN50=0
 AVG_SHANNON=0
 AVG_APEN=0
 AVG_SAMPEN=0
@@ -447,10 +450,12 @@ with open('RECORDS.txt') as fp:
 
 for filename_record in tags:
 	with open('RR_differences' + str(filename_record) + '.txt') as file_RR:
+#with open('RR_differences'+ str(number) +'.txt') as file_RR:
 		heartrate = [float(line.rstrip()) for line in file_RR]
+		print(len(heartrate))
+		#heartrate_copy = heartrate
 
-
-	#filter out noise form initial heartrate
+	##filter out noise form initial heartrate##
 	heartrate_new = []#filtered values to be stored here
 	prev_values_med = []
 	n_prev_vals = 3
@@ -468,6 +473,7 @@ for filename_record in tags:
 	AVG_array = []
 	SDNN_array = []
 	SDNNi_array = []
+	pnn50_array = []
 	Shannon_array = []
 	approximate_array = []
 	sample_array = []
@@ -482,7 +488,9 @@ for filename_record in tags:
 		AVG = average(window)							#AVG of window
 		AVG_array.append(AVG) 
 		SDNN = td.sdnn(window)
-		SDNN_array.append(SDNN[0])				#SDNN 
+		SDNN_array.append(SDNN[0])				#SDNN 		
+		pnn50 = td.nn50(window)
+		pnn50_array.append(pnn50[0])			#pnn50
 		Shannon = shannon(window)					#Shannon entropy
 		Shannon_array.append(Shannon)
 		approximate = approximate_entropy_bucket(window,m=2,r=0.2,rsplit=5)#approximate entropy
@@ -495,7 +503,7 @@ for filename_record in tags:
 	AVG_HR = round(sum(AVG_array)/ len(AVG_array), 2)
 	AVG_SDNN = round(sum(SDNN_array)/ len(SDNN_array), 2)
 	AVG_RMSSD = round(sum(RMSSD_array)/ len(RMSSD_array), 2)
-	#AVG_SDNNi = round(sum(SDNNi_array)/ len(SDNNi_array), 2)
+	AVG_PNN50 = round(sum(pnn50)/ len(pnn50), 2)
 	AVG_SHANNON = round(sum(Shannon_array)/ len(Shannon_array), 2)
 	AVG_APEN = round(sum(approximate_array)/ len(approximate_array), 2)
 	AVG_SAMPEN = round(sum(sample_array)/ len(sample_array), 2)
@@ -504,49 +512,52 @@ for filename_record in tags:
 
 	#HEART RATE PLOT
 	plt.figure()
-	x = [i for i in range(1, len(heartrate_new)+1)]#length of samples/pulses
+	x = [i for i in range(1, len(heartrate_new)+1)]
 	y = heartrate_new
 
-
-	#window with highest RMSSD value
-	RMSSD_index = RMSSD_array.index(max(RMSSD_array))#index window of max RMSSD value
-	x1 = [i for i in range(RMSSD_index*window_size,(RMSSD_index+1)*window_size)]
-	y1 = heartrate_new[RMSSD_index*window_size:(RMSSD_index+1)*window_size]
-	
-	RMSSD_array.sort()
-	
-	RMSSD_second_index = RMSSD_array.index(RMSSD_array[-2])
-	x2 = [i for i in range(RMSSD_second_index*window_size,(RMSSD_second_index+1)*window_size)]
-	y2 = heartrate_new[RMSSD_second_index*window_size:(RMSSD_second_index+1)*window_size]
-	
-	RMSSD_third_index = RMSSD_array.index(RMSSD_array[-3])
-	x3 = [i for i in range(RMSSD_third_index*window_size,(RMSSD_third_index+1)*window_size)]
-	y3 = heartrate_new[RMSSD_third_index*window_size:(RMSSD_third_index+1)*window_size]
-	
-	
-	
-	'''
-	RMSSD_fourth_index = RMSSD_array.index(RMSSD_array[-4])
-	x4 = [i for i in range(RMSSD_fourth_index*window_size,(RMSSD_fourth_index+1)*window_size)]
-	y4 = heartrate_new[RMSSD_fourth_index*window_size:(RMSSD_fourth_index+1)*window_size]
-	
-	RMSSD_fifth_index = RMSSD_array.index(RMSSD_array[-5])
-	x5 = [i for i in range(RMSSD_fifth_index*window_size,(RMSSD_fifth_index+1)*window_size)]
-	y5 = heartrate_new[RMSSD_fifth_index*window_size:(RMSSD_fifth_index+1)*window_size]
-	
-	'''
-		
 	plt.title("HR PLOT")
 	plt.xlabel("Duration (in seconds)")
 	plt.ylabel("ECG")
 	plt.plot(x, y, color = 'blue', linewidth = 0.5, zorder = 1)
+
+
+	#window with highest RMSSD value
+	current_array = STD_array
+	index = current_array.index(max(current_array))#index window of max RMSSD value
+	x1 = [i for i in range(index*window_size,(index+1)*window_size)]
+	y1 = heartrate_new[index*window_size:(index+1)*window_size]#window of max RMSSD value
+	
 	plt.plot(x1, y1, color = 'black', linewidth = 0.5, zorder = 2)
-	plt.plot(x2, y2, color = 'black', linewidth = 0.5, zorder = 2)
-	plt.plot(x3, y3, color = 'black', linewidth = 0.5, zorder = 2)
 	
-	#figurename0 =  library_name + "_" + str(filename_record) + "_" + str(window_size) + "sec.jpeg" #"Usr" + str(user)+"0.jpeg"
+	current_array.sort()
+	
+	if len(current_array)>= 2:
+		second_index = current_array.index(current_array[-2])
+		x2 = [i for i in range(second_index*window_size,(second_index+1)*window_size)]
+		y2 = heartrate_new[second_index*window_size:(second_index+1)*window_size]#window of max RMSSD value
+		plt.plot(x2, y2, color = 'black', linewidth = 0.5, zorder = 2)
+	
+	if len(current_array)>= 3:
+		third_index = current_array.index(current_array[-3])
+		x3 = [i for i in range(third_index*window_size,(third_index+1)*window_size)]
+		y3 = heartrate_new[third_index*window_size:(third_index+1)*window_size]#window of max RMSSD value
+		plt.plot(x3, y3, color = 'black', linewidth = 0.5, zorder = 2)
+	
+	if len(current_array)>= 4:
+		fourth_index = current_array.index(current_array[-4])
+		x4 = [i for i in range(fourth_index*window_size,(fourth_index+1)*window_size)]
+		y4 = heartrate_new[fourth_index*window_size:(fourth_index+1)*window_size]#window of max RMSSD value
+		plt.plot(x4, y4, color = 'black', linewidth = 0.5, zorder = 2)
+	
+	if len(current_array)>= 5:
+		fifth_index = current_array.index(current_array[-5])
+		x5 = [i for i in range(fifth_index*window_size,(fifth_index+1)*window_size)]
+		y5 = heartrate_new[fifth_index*window_size:(fifth_index+1)*window_size]#window of max RMSSD value
+		plt.plot(x5, y5, color = 'black', linewidth = 0.5, zorder = 2)
+	
+	
+	figurename0 =  library_name + "_" + str(filename_record) + "_" + str(window_size) + "sec.jpeg"
 	#plt.savefig(figurename0)
-	
 
 
 '''
@@ -554,6 +565,7 @@ for filename_record in tags:
 	f_latex_data.write("\\newcommand{\\meansdnn}{"+str(AVG_SDNN)+"}" + "\n")
 	#f.write("\\newcommand{\\AVG_SDNNi}{"+str(AVG_SDNNi)+"}" + "\n")
 	f_latex_data.write("\\newcommand{\\meanrmssd}{"+str(AVG_RMSSD)+"}" + "\n")
+	f_latex_data.write("\\newcommand{\\meanpnn}{"+str(AVG_PNN50)+"}" + "\n")
 	f_latex_data.write("\\newcommand{\\meanShannon}{"+str(AVG_SHANNON)+"}" + "\n")
 	f_latex_data.write("\\newcommand{\\meanApEn}{"+str(AVG_APEN)+"}" + "\n")
 	f_latex_data.write("\\newcommand{\\meanSampEn}{"+str(AVG_SAMPEN)+"}" + "\n")
