@@ -1,203 +1,219 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019/Debian) (preloaded format=xelatex 2022.1.11)  21 FEB 2023 14:57
+This is XeTeX, Version 3.141592653-2.6-0.999994 (MiKTeX 23.1) (preloaded format=xelatex 2023.3.9)  29 JUN 2023 10:25
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**document.tex
-(./document.tex
-LaTeX2e <2020-02-02> patch level 2
-L3 programming layer <2020-02-14>
-(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
-Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
-(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
-File: size10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
+**./document.tex
+(document.tex
+LaTeX2e <2022-11-01> patch level 1
+L3 programming layer <2023-02-07>
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2022/07/02 v1.4n Standard LaTeX document class
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
+File: size10.clo 2022/07/02 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count163
-\c@section=\count164
-\c@subsection=\count165
-\c@subsubsection=\count166
-\c@paragraph=\count167
-\c@subparagraph=\count168
-\c@figure=\count169
-\c@table=\count170
-\abovecaptionskip=\skip47
-\belowcaptionskip=\skip48
-\bibindent=\dimen134
+\c@part=\count181
+\c@section=\count182
+\c@subsection=\count183
+\c@subsubsection=\count184
+\c@paragraph=\count185
+\c@subparagraph=\count186
+\c@figure=\count187
+\c@table=\count188
+\abovecaptionskip=\skip48
+\belowcaptionskip=\skip49
+\bibindent=\dimen140
 )
-(/usr/share/texlive/texmf-dist/tex/latex/fontspec/fontspec.sty
-(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2020-02-14 L3 programming layer (loader) 
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec.sty
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/l3packages/xparse\xpar
+se.sty
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/l3kernel\expl3.sty
+Package: expl3 2023-02-07 L3 programming layer (loader) 
 
-(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-xdvipdfmx.def
-File: l3backend-xdvipdfmx.def 2020-02-03 L3 backend support: xdvipdfmx
-\g__graphics_track_int=\count171
-\l__pdf_internal_box=\box45
-\g__pdf_backend_object_int=\count172
-\g__pdf_backend_annotation_int=\count173
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-xe
+tex.def
+File: l3backend-xetex.def 2023-01-16 L3 backend support: XeTeX
+\g__graphics_track_int=\count189
+\l__pdf_internal_box=\box51
+\g__pdf_backend_object_int=\count190
+\g__pdf_backend_annotation_int=\count191
+\g__pdf_backend_link_int=\count192
 ))
-Package: xparse 2020-02-14 L3 Experimental document command parser
-\l__xparse_current_arg_int=\count174
-\g__xparse_grabber_int=\count175
-\l__xparse_m_args_int=\count176
-\l__xparse_v_nesting_int=\count177
+Package: xparse 2023-01-16 L3 Experimental document command parser
 )
-Package: fontspec 2020/02/03 v2.7h Font selection for XeLaTeX and LuaLaTeX
+Package: fontspec 2022/01/15 v2.8a Font selection for XeLaTeX and LuaLaTeX
 
-(/usr/share/texlive/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
-Package: fontspec-xetex 2020/02/03 v2.7h Font selection for XeLaTeX and LuaLaTe
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec-xete
+x.sty
+Package: fontspec-xetex 2022/01/15 v2.8a Font selection for XeLaTeX and LuaLaTe
 X
-\l__fontspec_script_int=\count178
-\l__fontspec_language_int=\count179
-\l__fontspec_strnum_int=\count180
-\l__fontspec_tmp_int=\count181
-\l__fontspec_tmpa_int=\count182
-\l__fontspec_tmpb_int=\count183
-\l__fontspec_tmpc_int=\count184
-\l__fontspec_em_int=\count185
-\l__fontspec_emdef_int=\count186
-\l__fontspec_strong_int=\count187
-\l__fontspec_strongdef_int=\count188
-\l__fontspec_tmpa_dim=\dimen135
-\l__fontspec_tmpb_dim=\dimen136
-\l__fontspec_tmpc_dim=\dimen137
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-Package: fontenc 2020/02/11 v2.0o Standard LaTeX package
+\l__fontspec_script_int=\count193
+\l__fontspec_language_int=\count194
+\l__fontspec_strnum_int=\count195
+\l__fontspec_tmp_int=\count196
+\l__fontspec_tmpa_int=\count197
+\l__fontspec_tmpb_int=\count198
+\l__fontspec_tmpc_int=\count199
+\l__fontspec_em_int=\count266
+\l__fontspec_emdef_int=\count267
+\l__fontspec_strong_int=\count268
+\l__fontspec_strongdef_int=\count269
+\l__fontspec_tmpa_dim=\dimen141
+\l__fontspec_tmpb_dim=\dimen142
+\l__fontspec_tmpc_dim=\dimen143
+ (C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/base\fontenc.sty
+Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 )
-(/usr/share/texlive/texmf-dist/tex/latex/fontspec/fontspec.cfg)))
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-Package: graphicx 2019/11/30 v1.2a Enhanced LaTeX Graphics (DPC,SPQR)
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/fontspec\fontspec.cfg)
+))
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
-Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
-\KV@toks@=\toks14
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
+Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
 )
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-Package: graphics 2019/11/30 v1.4a Standard LaTeX Graphics (DPC,SPQR)
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
+Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
-Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.
+cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
-Package graphics Info: Driver file: xetex.def on input line 105.
+Package graphics Info: Driver file: xetex.def on input line 107.
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/xetex.def
-File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\xetex.def
+File: xetex.def 2022/09/22 v5.0n Graphics/color driver for xetex
 ))
-\Gin@req@height=\dimen138
-\Gin@req@width=\dimen139
+\Gin@req@height=\dimen144
+\Gin@req@width=\dimen145
 )
-(/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
-Package: fancyhdr 2019/01/31 v3.10 Extensive control of page headers and footer
-s
-\f@nch@headwidth=\skip49
-\f@nch@O@elh=\skip50
-\f@nch@O@erh=\skip51
-\f@nch@O@olh=\skip52
-\f@nch@O@orh=\skip53
-\f@nch@O@elf=\skip54
-\f@nch@O@erf=\skip55
-\f@nch@O@olf=\skip56
-\f@nch@O@orf=\skip57
-)
-(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
-Package: geometry 2020/01/02 v5.9 Page Geometry
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/fancyhdr\fancyhdr.sty
+Package: fancyhdr 2022/11/09 v4.1 Extensive control of page headers and footers
 
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+\f@nch@headwidth=\skip50
+\f@nch@O@elh=\skip51
+\f@nch@O@erh=\skip52
+\f@nch@O@olh=\skip53
+\f@nch@O@orh=\skip54
+\f@nch@O@elf=\skip55
+\f@nch@O@erf=\skip56
+\f@nch@O@olf=\skip57
+\f@nch@O@orf=\skip58
+) (C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.st
+y
+Package: geometry 2020/01/02 v5.9 Page Geometry
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
-Package: iftex 2019/11/07 v1.0c TeX engine tests
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
+Package: iftex 2022/02/03 v1.0f TeX engine tests
 ))
-\Gm@cnth=\count189
-\Gm@cntv=\count190
-\c@Gm@tempcnt=\count191
-\Gm@bindingoffset=\dimen140
-\Gm@wd@mp=\dimen141
-\Gm@odd@mp=\dimen142
-\Gm@even@mp=\dimen143
-\Gm@layoutwidth=\dimen144
-\Gm@layoutheight=\dimen145
-\Gm@layouthoffset=\dimen146
-\Gm@layoutvoffset=\dimen147
-\Gm@dimlist=\toks15
+\Gm@cnth=\count270
+\Gm@cntv=\count271
+\c@Gm@tempcnt=\count272
+\Gm@bindingoffset=\dimen146
+\Gm@wd@mp=\dimen147
+\Gm@odd@mp=\dimen148
+\Gm@even@mp=\dimen149
+\Gm@layoutwidth=\dimen150
+\Gm@layoutheight=\dimen151
+\Gm@layouthoffset=\dimen152
+\Gm@layoutvoffset=\dimen153
+\Gm@dimlist=\toks17
+
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen148
-\lightrulewidth=\dimen149
-\cmidrulewidth=\dimen150
-\belowrulesep=\dimen151
-\belowbottomsep=\dimen152
-\aboverulesep=\dimen153
-\abovetopsep=\dimen154
-\cmidrulesep=\dimen155
-\cmidrulekern=\dimen156
-\defaultaddspace=\dimen157
-\@cmidla=\count192
-\@cmidlb=\count193
-\@aboverulesep=\dimen158
-\@belowrulesep=\dimen159
-\@thisruleclass=\count194
-\@lastruleclass=\count195
-\@thisrulewidth=\dimen160
-) (./document.aux)
+\heavyrulewidth=\dimen154
+\lightrulewidth=\dimen155
+\cmidrulewidth=\dimen156
+\belowrulesep=\dimen157
+\belowbottomsep=\dimen158
+\aboverulesep=\dimen159
+\abovetopsep=\dimen160
+\cmidrulesep=\dimen161
+\cmidrulekern=\dimen162
+\defaultaddspace=\dimen163
+\@cmidla=\count273
+\@cmidlb=\count274
+\@aboverulesep=\dimen164
+\@belowrulesep=\dimen165
+\@thisruleclass=\count275
+\@lastruleclass=\count276
+\@thisrulewidth=\dimen166
+) (C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/generic/babel\babel.sty
+Package: babel 2023/02/13 3.86 The Babel package
+\babel@savecnt=\count277
+\U@D=\dimen167
+\l@unhyphenated=\language79
+
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/generic/babel\xebabel.def)
+\bbl@readstream=\read2
+\bbl@dirlevel=\count278
+
+*************************************
+* Local config file bblopts.cfg used
+*
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/arabi\bblopts.cfg
+File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
+ babel
+)
+Package babel Info: Main language set with 'main='. Except if you have
+(babel)             problems, prefer the default mechanism for setting
+(babel)             the main language. Reported on input line 4332.
+
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/babel-english\english.
+ldf
+Language: english 2017/06/06 v3.3r English support from the babel system
+Package babel Info: Hyphen rules for 'canadian' set to \l@english
+(babel)             (\language0). Reported on input line 102.
+Package babel Info: Hyphen rules for 'australian' set to \l@ukenglish
+(babel)             (\language73). Reported on input line 105.
+Package babel Info: Hyphen rules for 'newzealand' set to \l@ukenglish
+(babel)             (\language73). Reported on input line 108.
+)
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/babel-greek\greek.ldf
+Language: greek 2023-06-01 1.13.2 Greek support for the babel system
+\bbl@monogreek=\count279
+\bbl@polygreek=\count280
+\bbl@ancientgreek=\count281
+
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/greek-fontenc\tuenc-gr
+eek.def
+File: tuenc-greek.def 2023/03/08 2.2.1 Greek LICRs for XeTeX and LuaTeX
+
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/greek-fontenc\greek-fo
+ntenc.def
+File: greek-fontenc.def 2023-06-01 2.3 Common Greek font encoding definitions
+))))
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/el\babe
+l-greek.tex
+Package babel Info: Importing font and identification data for greek
+(babel)             from babel-el.ini. Reported on input line 11.
+)
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/generic/babel/locale/en\babe
+l-english.tex
+Package babel Info: Importing font and identification data for english
+(babel)             from babel-en.ini. Reported on input line 11.
+)
+(C:\Users\bellel\AppData\Local\Programs\MiKTeX\tex/latex/lgreek\lgreek.sty
+\vwl=\count282
+\acct=\count283
+)
+(document.aux)
 \openout1 = `document.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 11.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 1
-1.
- (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
-File: ts1cmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-)
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
-LaTeX Font Info:    ... okay on input line 11.
-
-Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
-(fontspec)             this).
-
-\symlegacymaths=\mathgroup4
-LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 11.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 11.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 11.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 11.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 11.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 11.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 11.
-LaTeX Font Info:    Redeclaring math accent \check on input line 11.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 11.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 11.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 11.
-LaTeX Font Info:    Redeclaring math symbol \colon on input line 11.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 11.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 11.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 11.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 11.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 11.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 11.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 11.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 11.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 11.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 11.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 11.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 11.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 11.
-LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 11.
-LaTeX Font Info:    Overwriting symbol fon
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 16.
+LaTeX Font Info:    ... okay on input line 16.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 16.
+L

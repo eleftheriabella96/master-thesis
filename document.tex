@@ -1,90 +1,70 @@
-\documentclass[a4paper]{article}
-\usepackage{fontspec}
+\documentclass{article}
+\usepackage[utf8]{inputenc}
 \usepackage{graphicx}
-\usepackage{fancyhdr}
-\usepackage[margin=1cm,headheight=0cm,foot=3cm,includeheadfoot]{geometry}
-\usepackage{booktabs}
+\usepackage[main=greek,english]{babel}
+\usepackage{adjustbox}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\newcommand \en {\selectlanguage{english}}
+\newcommand \gr {\selectlanguage{greek}}
 
-
-\geometry{margin=1cm}
-
+\input{latex_data_240223}
 \begin{document}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\include{latex_data_810}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\setmainfont{Cambria}
-
-\pagestyle{fancy}
-\pagenumbering{gobble}
-\renewcommand{\headrulewidth}{0cm}
-
-\renewcommand{\arraystretch}{2}
-
-\lfoot{\includegraphics[width=\columnwidth]{footer.png}\bigskip}
-
-
-  
 \begin{figure}[h]
 	\centering
 	\includegraphics[scale=.6]{homore.png}
 \end{figure}
-
 \noindent\hrulefill
 
 \bigskip\bigskip\bigskip
 \begin{center}
-    \textbf{\Large Ανάλυση Καρδιακού Ρυθμού}
+    \textbf{\Large \gr Ανάλυση Καρδιακού Ρυθμού }
 \end{center}
 
-
-\bigskip\bigskip\bigskip
-
+\bigskip\bigskip
 \bigskip
 
 \noindent\hrulefill
 
 \bigskip\bigskip
-\textbf{Βασικές Μετρήσεις:}
+\textbf{\gr Βασικές Μετρήσεις:} \\
+\par
 
-\begin{center}
-\begin{tabular}{r c c c} 
-\toprule
-    Μέτρο       &   Μέτρηση     &   Μέση τιμή ασθενούς      &   Φυσιολογική τιμή(normal value +- S.D.)    \\
-\midrule
-    mean        &   \mean       &   \meanmean               &   60-100 bpm \\
-    rmssd       &   \rmssd       &  \meanrmssd               &   27-12, 27+12                 \\
+\adjustbox{max width=\textwidth}{%
+\begin{tabular}{c c c c} 
 
-\midrule
-    Shannon Entropy          &   \Shannon           &   \meanShannon &   xxx                 \\
-    Approximate Entropy]     &   \ApEn       &   \meanApEn          &   xxx                 \\
-    Sample Entropy           &   \SampEn            &   \meanSampEn               &   xxx                 \\
-    Bubble Entropy           &   \Bubble            &   \meanBubble               &   xxx                 \\
-\bottomrule\bottomrule
-\end{tabular}
-\end{center}
+    \textbf{\gr Μέτρο}       &   \textbf{Μέτρηση}     &   \textbf{Μέση τιμή ασθενούς}      &   \textbf{Φυσιολογική τιμή}    \\
+    \hline \\
+    
+ \en    AVG         &   \AVG         &   \meanAVG                 &   \en xxx                 \\
+ \en    RMSSD       &   \RMSSD       &   \meanRMSSD               &   \en xxx                 \\
+ \en    STD         &   \STD         &   \meanSTD                 &   \en xxx                 \\
+\par
+ \en    Shannon Entropy          &   \Shannon           &   \meanShannon              &   \en xxx                 \\
+  \en   Renyi Entropy           &   \Renyi            &   \meanRenyi               &   \en xxx                 \\
+ \en    Approximate Entropy     &   \ApEn       &   \meanApEn          &   \en xxx                 \\
+ \en    Sample Entropy           &   \SampEn            &   \meanSampEn               &   \en xxx                 \\
+ \en    Bubble Entropy           &   \Bubble            &   \meanBubble               &   \en xxx                 \\
+ 
+\end{tabular}}
 
 \newpage
+\begin{center}
+    \textbf{Περιοχές Σήματος προς Διερεύνηση:}
+\end{center}
 
-\textbf{Περιοχές Σήματος προς Διερεύνηση:}
-(ταξινόμηση βάσει των περισσότερο πιθανών ανωμαλιών)
 \bigskip\bigskip
-
-\centering
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \begin{figure}[h]
     \centering
-	\includegraphics[scale=0.5]{\figurename}
+	\includegraphics[scale=0.5]{document/congestive-heart-failure-rr-interval-database-1.0.0_223_240sec.jpeg}
+ \caption{Καρδιογράφημα με εντοπισμό πιθανών επικίνδυνων περιοχών με βάση τη μετρική \en Renyi Entropy}
 \end{figure}
 
-\bigskip\bigskip\newpage
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
+\begin{figure}[h]
+    \centering
+	\includegraphics[scale=0.5]{document/Haar_scale_10_223_240sec.jpeg}
+ \caption{Καρδιογράφημα με εντοπισμό πιθανών επικίνδυνων περιοχών με βάση τα κυματίδια \en Haar \gr σε κλίμακα εκτίμησης 10}
+\end{figure}
 
 \end{document}

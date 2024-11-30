@@ -1,0 +1,104 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[main=greek,english]{babel}
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\newcommand \en {\selectlanguage{english}}
+\newcommand \gr {\selectlanguage{greek}}
+
+\begin{document}
+\gr
+\author{Μπελλά Ελευθερία}
+
+\begin{table}
+\begin{center}
+\caption{{Ποσοστά επιτυχίας με επιτυχία πρόβλεψης τουλάχιστον 50 τοις εκατό (δηλαδή εντοπισμός τουλάχιστον μίας από τις δύο τεχνητές περιοχές) για τη βιβλιοθήκη \en Sinus Rhythm RR Intervals \gr και όλες τις κλίμακες εκτίμησης των κυματιδίων \en Haar}}
+\begin{tabular}{||c | c | c | c | c ||} 
+   
+ \hline\hline
+ \gr Πείραμα & 2 & 3 & 4 & 5   \\ [0.5ex] 
+ \hline\hline
+\en zeros & 1.85 & 0 & 1.85 & 79.6 \\ 
+ \hline
+\en multiply by 3 & 100 & 100 & 100 & 100 \\
+ \hline
+\en A B + C & 100 & 100 & 100 & 100 \\
+ \hline
+\en A x B C & 3.7 & 3.7 & 7.4 & 5.55 \\
+ \hline
+\en A x B-x C & 1.85 & 3.7 & 3.7 & 1.85 \\ 
+ \hline
+\en A x C & 1.85 & 0 & 5.5 & 1.85 \\ [1ex] 
+ \hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{||c | c | c | c | c | c ||} 
+   
+ \hline\hline
+ \gr Πείραμα & 6 & 7 & 8 & 9 & 10  \\ [0.5ex] 
+ \hline\hline
+\en zeros & 79.62 & 87.03 & 88.88 & 85.18 & 68.51 \\ 
+ \hline
+\en multiply by 3 & 100 & 100 & 100 & 100 & 100 \\
+ \hline
+\en A B + C & 100 & 100 & 100 & 100 & 88.88 \\
+ \hline
+\en A x B C & 88.88 & 90.74 & 94.44 & 88.88 & 88.88 \\
+ \hline
+\en A x B-x C & 90.74 & 92.59 & 90.74 & 92.59 & 94.44 \\ 
+ \hline
+\en A x C & 90.74 & 94.44 & 90.74 & 92.59 & 90.74 \\ [1ex] 
+ \hline
+\end{tabular}
+
+\end{center}
+\end{table}
+
+
+\begin{table}[]
+\begin{center}
+\caption{{Ποσοστά επιτυχίας με επιτυχία πρόβλεψης τουλάχιστον 50 τοις εκατό (δηλαδή εντοπισμός τουλάχιστον μίας από τις δύο τεχνητές περιοχές) για τη βιβλιοθήκη \en Fantasia Database \gr και όλες τις κλίμακες εκτίμησης των κυματιδίων \en Haar}}
+\begin{tabular}{||c | c | c | c | c ||} 
+   
+ \hline\hline
+ \gr Πείραμα & 2 & 3 & 4 & 5   \\ [0.5ex] 
+ \hline\hline
+\en zeros & 23.68 & 26.31 & 28.94 & 31.57 \\ 
+ \hline
+\en multiply by 3 & 100 & 100 & 100 & 100 \\
+ \hline
+\en A B + C & 100 & 100 & 100 & 100 \\
+ \hline
+\en A x B C & 18.42 & 18.42 & 18.42 & 21.05 \\
+ \hline
+\en A x B-x C & 26.31 & 39.47 & 26.31 & 23.68 \\ 
+ \hline
+\en A x C & 26.31 & 36.84 & 31.57 & 23.68 \\ [1ex] 
+ \hline
+\end{tabular}
+\end{center}
+
+\begin{center}
+\begin{tabular}{||c | c | c | c | c | c ||} 
+   
+ \hline\hline
+ \gr Πείραμα & 6 & 7 & 8 & 9 & 10  \\ [0.5ex] 
+ \hline\hline
+\en zeros & 100 & 100 & 100 & 100 & 100 \\ 
+ \hline
+\en multiply by 3 & 100 & 100 & 100 & 100 & 100 \\
+ \hline
+\en A B + C & 100 & 100 & 100 & 100 & 88.88 \\
+ \hline
+\en A x B C & 100 & 100 & 100 & 100 & 100 \\
+ \hline
+\en A x B-x C & 100 & 97.36 & 100 & 100 & 100 \\ 
+ \hline
+\en A x C & 100 & 100 & 100 & 100 & 100 \\ [1ex] 
+ \hline
+\end{tabular}
+\end{center}
+\end{table}
+\end{document}
