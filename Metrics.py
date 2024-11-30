@@ -416,6 +416,9 @@ max_SHANNON_VALUE=0
 max_APEN_VALUE=0
 max_SAMPEN_VALUE=0
 max_BUBBLE_VALUE=0
+max_haar_4=0
+max_haar_6=0
+max_haar_8=0
 #AVG VALUES FOR EACH USER
 AVG_HR=0
 AVG_RMSSD=0
@@ -427,7 +430,7 @@ AVG_BUBBLE=0
 
 ################## 1) NORMAL RR INTERVALS #############################
 #number = sys.argv[1]
-window_size = int(sys.argv[1])
+window_size = 60#int(sys.argv[1])
 window = [0]*window_size
 library_name = 'cu-supraventricular-arrhythmia'
 countlines = 0
@@ -509,6 +512,10 @@ for filename_record in tags:
 	AVG_HAAR6 = round(sum(haar_6_flat)/ len(haar_6_flat), 2)
 	AVG_HAAR8 = round(sum(haar_8_flat)/ len(haar_8_flat), 2)
 	
+	max_haar_4 = max(haar_4_flat)
+	max_haar_6 = max(haar_6_flat)
+	max_haar_8 = max(haar_8_flat)
+	
 
 
 	#HEART RATE PLOT
@@ -585,9 +592,13 @@ for filename_record in tags:
 	f_latex_data.write("\\newcommand{\\meanApEn}{"+str(AVG_APEN)+"}" + "\n")
 	f_latex_data.write("\\newcommand{\\meanSampEn}{"+str(AVG_SAMPEN)+"}" + "\n")
 	f_latex_data.write("\\newcommand{\\meanBubble}{"+str(AVG_BUBBLE)+"}" + "\n")
-	f_latex_data.write("\\newcommand{\\meanHaar4}{"+str(AVG_HAAR4)+"}" + "\n")
-	f_latex_data.write("\\newcommand{\\meanHaar4}{"+str(AVG_HAAR6)+"}" + "\n")
-	f_latex_data.write("\\newcommand{\\meanHaar4}{"+str(AVG_HAAR8)+"}" + "\n")
+	f_latex_data.write("\\newcommand{\\meanHaarfour}{"+str(AVG_HAAR4)+"}" + "\n")
+	f_latex_data.write("\\newcommand{\\meanHaarsix}{"+str(AVG_HAAR6)+"}" + "\n")
+	f_latex_data.write("\\newcommand{\\meanHaareight}{"+str(AVG_HAAR8)+"}" + "\n")
+	f_latex_data.write("\\newcommand{\\meanHaareight}{"+str(AVG_HAAR8)+"}" + "\n")
+	f_latex_data.write("\\newcommand{\\maxHaarfour}{"+str(max_haar_4)+"}" + "\n")
+	f_latex_data.write("\\newcommand{\\maxHaarsix}{"+str(max_haar_6)+"}" + "\n")
+	f_latex_data.write("\\newcommand{\\maxHaareight}{"+str(max_haar_8)+"}" + "\n")
 	
 
 	f_latex_data.write("\\newcommand{\\figurename}{"+figurename+"}" + "\n")
