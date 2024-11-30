@@ -1,0 +1,90 @@
+\documentclass[a4paper]{article}
+\usepackage{fontspec}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage[margin=1cm,headheight=0cm,foot=3cm,includeheadfoot]{geometry}
+\usepackage{booktabs}
+
+
+\geometry{margin=1cm}
+
+\begin{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{latex_data_810}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\setmainfont{Cambria}
+
+\pagestyle{fancy}
+\pagenumbering{gobble}
+\renewcommand{\headrulewidth}{0cm}
+
+\renewcommand{\arraystretch}{2}
+
+\lfoot{\includegraphics[width=\columnwidth]{footer.png}\bigskip}
+
+
+  
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=.6]{homore.png}
+\end{figure}
+
+\noindent\hrulefill
+
+\bigskip\bigskip\bigskip
+\begin{center}
+    \textbf{\Large Ανάλυση Καρδιακού Ρυθμού}
+\end{center}
+
+
+\bigskip\bigskip\bigskip
+
+\bigskip
+
+\noindent\hrulefill
+
+\bigskip\bigskip
+\textbf{Βασικές Μετρήσεις:}
+
+\begin{center}
+\begin{tabular}{r c c c} 
+\toprule
+    Μέτρο       &   Μέτρηση     &   Μέση τιμή ασθενούς      &   Φυσιολογική τιμή(normal value +- S.D.)    \\
+\midrule
+    mean        &   \mean       &   \meanmean               &   60-100 bpm \\
+    rmssd       &   \rmssd       &  \meanrmssd               &   27-12, 27+12                 \\
+
+\midrule
+    Shannon Entropy          &   \Shannon           &   \meanShannon &   xxx                 \\
+    Approximate Entropy]     &   \ApEn       &   \meanApEn          &   xxx                 \\
+    Sample Entropy           &   \SampEn            &   \meanSampEn               &   xxx                 \\
+    Bubble Entropy           &   \Bubble            &   \meanBubble               &   xxx                 \\
+\bottomrule\bottomrule
+\end{tabular}
+\end{center}
+
+\newpage
+
+\textbf{Περιοχές Σήματος προς Διερεύνηση:}
+(ταξινόμηση βάσει των περισσότερο πιθανών ανωμαλιών)
+\bigskip\bigskip
+
+\centering
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{figure}[h]
+    \centering
+	\includegraphics[scale=0.5]{\figurename}
+\end{figure}
+
+\bigskip\bigskip\newpage
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\end{document}
